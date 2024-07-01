@@ -1,0 +1,10 @@
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  & > div {
+    flex: 1 1 265px;
+    max-width: 265px;
+  }
+}

@@ -1,0 +1,24 @@
+.filter-panel {
+  background-color: #f0f0f0;
+  padding: 20px;
+  min-width: 200px;
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+}
+
+.filter-section {
+  margin-bottom: 10px;
+  h3 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+  }
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  input[type="checkbox"] {
+    margin-right: 5px;
+  }
+}

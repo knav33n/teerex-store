@@ -1,0 +1,35 @@
+.shopping-cart {
+  max-width: 100%;
+  .cart-items {
+    .cart-item {
+      flex-direction: column;
+      .item-details {
+        width: 100%;
+      }
+      .item-actions {
+        width: 100%;
+        justify-content: flex-end;
+      }
+      &:last-child {
+        border-bottom: 1px solid #ccc;
+      }
+    }
+  }
+  .total {
+    text-align: center;
+  }
+}
+
+@media (min-width: 768px) {
+  .shopping-cart {
+    max-width: 60%;
+    .cart-items {
+      .cart-item {
+        flex-direction: row;
+        &:last-child {
+          border-bottom: 1px solid #ccc;
+        }
+      }
+    }
+  }
+}
