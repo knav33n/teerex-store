@@ -8,13 +8,20 @@ interface ProductFilterProps {
 }
 
 interface Filters {
-    gender?: string[];
-    color?: string[];
-    priceRange?: string[];
-    type?: string[];
+    gender: string[] | [];
+    color: string[] | [];
+    priceRange: string[] | [];
+    type: string[] | [];
 }
 
-const Checkbox = ({ checked, onChange, label, filterType }) => <label>
+interface CheckBoxProps {
+    checked: boolean
+    onChange: (filterType: keyof Filters, label: string, checked: boolean) => void
+    label: string
+    filterType: keyof Filters
+}
+
+const Checkbox = ({ checked, onChange, label, filterType }: CheckBoxProps) => <label>
     <input
         type="checkbox"
         value={label.toLowerCase()}
@@ -48,14 +55,15 @@ const ProductFilter = ({ products, setData }: ProductFilterProps) => {
     };
 
     const handleFilterChange = (filters: Filters) => {
-        let filtered = [...products];
+        let filtered: Product[] | [] = []
+        filtered = [...products];
 
         if (filters.gender && filters.gender.length > 0) {
-            filtered = filtered.filter(product => filters.gender?.includes(product.gender.toLowerCase()));
+            filtered = filtered.filter(product => (filters.gender as string[]).includes(product.gender.toLowerCase()));
         }
 
         if (filters.color && filters.color.length > 0) {
-            filtered = filtered.filter(product => filters.color?.includes(product.color.toLowerCase()));
+            filtered = filtered.filter(product => (filters.color as string[]).includes(product.color.toLowerCase()));
         }
 
         if (filters.priceRange && filters.priceRange.length > 0) {
@@ -73,7 +81,7 @@ const ProductFilter = ({ products, setData }: ProductFilterProps) => {
         }
 
         if (filters.type && filters.type.length > 0) {
-            filtered = filtered.filter(product => filters.type.includes(product.type.toLowerCase()));
+            filtered = filtered.filter(product => (filters.type as string[]).includes(product.type.toLowerCase()));
         }
 
         setData(filtered);
@@ -87,7 +95,7 @@ const ProductFilter = ({ products, setData }: ProductFilterProps) => {
                 {["Men", "Women"].map(gender =>
                     <Checkbox
                         key={gender}
-                        checked={filters.gender?.includes(gender.toLowerCase())}
+                        checked={(filters.gender as string[]).includes(gender.toLowerCase())}
                         onChange={handleCheckboxChange}
                         label={gender}
                         filterType="gender"
@@ -98,7 +106,7 @@ const ProductFilter = ({ products, setData }: ProductFilterProps) => {
                 {["Red", "Blue", "Green", "Black", "Yellow", "Pink", "Grey", "Purple", "White"].map(color =>
                     <Checkbox
                         key={color}
-                        checked={filters.color?.includes(color.toLowerCase())}
+                        checked={(filters.color as string[]).includes(color.toLowerCase())}
                         onChange={handleCheckboxChange}
                         label={color}
                         filterType="color"
@@ -109,7 +117,7 @@ const ProductFilter = ({ products, setData }: ProductFilterProps) => {
                 {["0-250", "250-450", ">450"].map(priceRange =>
                     <Checkbox
                         key={priceRange}
-                        checked={filters.priceRange?.includes(priceRange.toLowerCase())}
+                        checked={(filters.priceRange as string[]).includes(priceRange.toLowerCase())}
                         onChange={handleCheckboxChange}
                         label={priceRange}
                         filterType="priceRange"
@@ -120,7 +128,7 @@ const ProductFilter = ({ products, setData }: ProductFilterProps) => {
                 {["Polo", "Hoodie", "Basic"].map(type =>
                     <Checkbox
                         key={type}
-                        checked={filters.type?.includes(type.toLowerCase())}
+                        checked={(filters.type as string[]).includes(type.toLowerCase())}
                         onChange={handleCheckboxChange}
                         label={type}
                         filterType="type"

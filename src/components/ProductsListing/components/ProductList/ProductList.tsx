@@ -12,7 +12,6 @@ const ProductList = ({ products }: ProductListProps) => {
             {products.map(product =>
                 <ProductCard
                     key={product.id}
-                    id={product.id}
                     product={product}
                 />)}
         </div>

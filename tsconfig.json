@@ -8,18 +8,4 @@
       "path": "./tsconfig.node.json"
     }
   ],
-  "compilerOptions": {
-    "types": ["node"],
-    "baseUrl": "./src",
-    "paths": {
-      "@components/*": ["components/*"],
-      "@layouts/*": ["layouts/*"],
-      "@common/*": ["components/common/*"],
-      "@pages/*": ["pages/*"],
-      "@types/*": ["types/*"],
-      "@services/*": ["services/*"],
-      "@routes/*": ["routes/*"],
-      "@contexts/*": ["contexts/*"]
-    }
-  }
 }

@@ -2,10 +2,11 @@ import Button from '@common/Button/Button';
 import { useCart } from '@contexts/Cart/CartContext';
 import { Product } from '@services/productService';
 import { useEffect, useState } from 'react';
+import { CartItem as CartItemType } from '@contexts/Cart/CartTypes'
 import './Counter.scss';
 
 interface CounterProps {
-    product: Product
+    product: Product | CartItemType
 }
 
 const Counter = ({ product }: CounterProps) => {
@@ -13,8 +14,8 @@ const Counter = ({ product }: CounterProps) => {
     const [quantity, setQuantity] = useState(product.buy_quantity);
 
     const addToCart = () => {
-        if (quantity + 1 <= product.quantity) {
-            const newQuantity = quantity + 1;
+        if (quantity! + 1 <= product.quantity) {
+            const newQuantity = quantity! + 1;
             cartDispatch({ type: 'ADD_TO_CART', payload: { ...product, buy_quantity: newQuantity } });
             setQuantity(newQuantity);
         } else {
@@ -23,7 +24,7 @@ const Counter = ({ product }: CounterProps) => {
     };
 
     const removeFromCart = () => {
-        const newQuantity = quantity - 1;
+        const newQuantity = quantity! - 1;
         if (newQuantity >= 0) {
             if (newQuantity === 0) {
                 cartDispatch({ type: 'REMOVE_FROM_CART', payload: product.id });

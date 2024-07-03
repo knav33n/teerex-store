@@ -10,6 +10,7 @@ export interface Product {
   price: number;
   quantity: number;
   type: string;
+  buy_quantity?: number;
 }
 
 const BASE_URL =

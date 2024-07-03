@@ -1,12 +1,12 @@
 import { useCart } from '@contexts/Cart/CartContext'
-import { Product } from '@services/productService'
-import CartItem from './components/CartItem/CartItem'
+import { CartItem as CartItemType } from '@contexts/Cart/CartTypes'
 import "./ShoppingCart.scss"
+import CartItem from './components/CartItem/CartItem'
 
 const ShoppingCart = () => {
     const { cartState: { cartItems } } = useCart()
 
-    const total = cartItems.reduce((accumulator: number, currentItem: Product) => {
+    const total: number = cartItems.reduce((accumulator: number, currentItem: CartItemType) => {
         return accumulator + (currentItem.price * currentItem.buy_quantity);
     }, 0);
 
@@ -20,7 +20,7 @@ const ShoppingCart = () => {
                 ) : (
                     <>
                         <div className="cart-items">
-                            {cartItems.map((item: Product) => (<CartItem key={item.id} item={item} />))}
+                            {cartItems.map((item: CartItemType) => (<CartItem key={item.id} item={item} />))}
 
                         </div>
                         <div className="total">

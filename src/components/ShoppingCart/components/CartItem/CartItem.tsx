@@ -1,16 +1,15 @@
 import Counter from "@common/Counter/Counter"
+import IconButton from "@common/IconButton/IconButton"
 import { useCart } from "@contexts/Cart/CartContext"
-import { Product } from "@services/productService"
-import "./CartItem.scss"
-import IconButton from "../../../common/IconButton/IconButton"
+import { CartItem as CartItemType } from '@contexts/Cart/CartTypes'
 import { RiDeleteBin6Line } from "react-icons/ri"
+import "./CartItem.scss"
 
-const CartItem = ({ item }: { item: Product }) => {
+const CartItem = ({ item }: { item: CartItemType }) => {
     const { cartDispatch } = useCart();
 
     const deleteItem = () => {
         cartDispatch({ type: "REMOVE_FROM_CART", payload: item.id })
-        // Add toast notification
     }
 
     return (
